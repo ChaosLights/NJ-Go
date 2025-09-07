@@ -1,37 +1,46 @@
-import React from "react";
-import { Button, View, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { StatusBar } from 'expo-status-bar';
 
 import { Amplify } from "aws-amplify";
-import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react-native";
+import { Authenticator } from "@aws-amplify/ui-react-native";
 
 import outputs from "./amplify_outputs.json";
+import { AppProvider } from './src/contexts/AppContext';
+import { AppNavigator } from './src/navigation/AppNavigator';
+import { isDevMode, DEV_CONFIG } from './src/config/dev';
 
 Amplify.configure(outputs);
 
-const SignOutButton = () => {
-  const { signOut } = useAuthenticator();
+// 开发模式组件 - 跳过认证
+const DevApp = () => {
+  useEffect(() => {
+    DEV_CONFIG.showDevModeAlert();
+  }, []);
 
   return (
-    <View style={styles.signOutButton}>
-      <Button title="Sign Out" onPress={signOut} />
-    </View>
+    <AppProvider>
+      <StatusBar style="auto" />
+      <AppNavigator />
+    </AppProvider>
   );
 };
 
-const App = () => {
+// 生产模式组件 - 需要认证
+const ProdApp = () => {
   return (
     <Authenticator.Provider>
       <Authenticator>
-        <SignOutButton />
+        <AppProvider>
+          <StatusBar style="auto" />
+          <AppNavigator />
+        </AppProvider>
       </Authenticator>
     </Authenticator.Provider>
   );
 };
 
-const styles = StyleSheet.create({
-  signOutButton: {
-    alignSelf: "flex-end",
-  },
-});
+const App = () => {
+  return isDevMode() ? <DevApp /> : <ProdApp />;
+};
 
 export default App;

@@ -13,7 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "此应用需要访问位置信息以提供智能交通服务。",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "此应用需要访问位置信息以提供智能交通服务。"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,10 +25,26 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.NJGo"
+      "package": "com.anonymous.NJGo",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "FOREGROUND_SERVICE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "此应用需要访问位置信息以提供智能交通服务。"
+        }
+      ]
+    ],
+    "extra": {
+      "googleMapsApiKey": "AIzaSyCa7RKulIplsUrTSv2twE0jG0jit_Cx9EQ"
     }
   }
 }
