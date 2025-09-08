@@ -15,8 +15,8 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "此应用需要访问位置信息以提供智能交通服务。",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "此应用需要访问位置信息以提供智能交通服务。"
+        "NSLocationWhenInUseUsageDescription": "This app needs access to location information to provide intelligent transit services.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to location information to provide intelligent transit services."
       }
     },
     "android": {
@@ -39,7 +39,7 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "此应用需要访问位置信息以提供智能交通服务。"
+          "locationAlwaysAndWhenInUsePermission": "This app needs access to location information to provide intelligent transit services."
         }
       ]
     ],

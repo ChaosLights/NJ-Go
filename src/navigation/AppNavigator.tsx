@@ -4,10 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
-import { MapScreen } from '../screens/MapScreen';
-import { TravelPlanScreen } from '../screens/TravelPlanScreen';
-import { TransitOptionsScreen } from '../screens/TransitOptionsScreen';
-import { TicketScreen } from '../screens/TicketScreen';
+import { MainScreen } from '../screens/MainScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
@@ -22,17 +19,8 @@ function TabNavigator() {
           let iconName: any;
 
           switch (route.name) {
-            case 'Map':
-              iconName = focused ? 'map' : 'map-outline';
-              break;
-            case 'Plans':
-              iconName = focused ? 'calendar' : 'calendar-outline';
-              break;
-            case 'Transit':
-              iconName = focused ? 'train' : 'train-outline';
-              break;
-            case 'Tickets':
-              iconName = focused ? 'ticket' : 'ticket-outline';
+            case 'Home':
+              iconName = focused ? 'home' : 'home-outline';
               break;
             case 'Profile':
               iconName = focused ? 'person' : 'person-outline';
@@ -45,47 +33,51 @@ function TabNavigator() {
         },
         tabBarActiveTintColor: '#007AFF',
         tabBarInactiveTintColor: 'gray',
-        headerShown: true,
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: 'white',
+          borderTopWidth: 1,
+          borderTopColor: '#f0f0f0',
+          paddingBottom: 8,
+          paddingTop: 8,
+          height: 80,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+        },
       })}
     >
       <Tab.Screen 
-        name="Map" 
-        component={MapScreen} 
+        name="Home" 
+        component={MainScreen} 
         options={{ 
-          title: '地图',
-          headerTitle: 'NJ Go - 地图'
-        }} 
-      />
-      <Tab.Screen 
-        name="Plans" 
-        component={TravelPlanScreen} 
-        options={{ 
-          title: '出行计划',
-          headerTitle: 'NJ Go - 出行计划'
-        }} 
-      />
-      <Tab.Screen 
-        name="Transit" 
-        component={TransitOptionsScreen} 
-        options={{ 
-          title: '交通选项',
-          headerTitle: 'NJ Go - 交通选项'
-        }} 
-      />
-      <Tab.Screen 
-        name="Tickets" 
-        component={TicketScreen} 
-        options={{ 
-          title: '车票',
-          headerTitle: 'NJ Go - 我的车票'
+          title: 'Home',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
+          ),
         }} 
       />
       <Tab.Screen 
         name="Profile" 
         component={ProfileScreen} 
         options={{ 
-          title: '个人中心',
-          headerTitle: 'NJ Go - 个人中心'
+          title: 'Profile',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
+          ),
+          headerShown: true,
+          headerTitle: 'NJ Go - Profile',
+          headerStyle: {
+            backgroundColor: 'white',
+            borderBottomWidth: 1,
+            borderBottomColor: '#f0f0f0',
+          },
+          headerTitleStyle: {
+            color: '#333',
+            fontSize: 18,
+            fontWeight: '600',
+          },
         }} 
       />
     </Tab.Navigator>

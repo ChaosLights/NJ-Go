@@ -12,13 +12,13 @@ export function TicketScreen() {
         {state.tickets.length === 0 ? (
           <View style={styles.emptyState}>
             <Ionicons name="ticket-outline" size={64} color="#ccc" />
-            <Text style={styles.emptyText}>暂无车票</Text>
-            <Text style={styles.emptySubtext}>购买车票后将在这里显示</Text>
+            <Text style={styles.emptyText}>No Tickets</Text>
+            <Text style={styles.emptySubtext}>Tickets will be displayed here after purchase</Text>
           </View>
         ) : (
           <View style={styles.ticketsList}>
             {/* 将在后续实现车票列表 */}
-            <Text>车票列表将在这里显示</Text>
+            <Text>Ticket list will be displayed here</Text>
           </View>
         )}
       </ScrollView>

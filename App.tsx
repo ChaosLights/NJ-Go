@@ -29,7 +29,10 @@ const DevApp = () => {
 const ProdApp = () => {
   return (
     <Authenticator.Provider>
-      <Authenticator>
+      <Authenticator
+        signUpAttributes={['email']} //表示在 注册（sign up） 的时候，需要用户填写哪些信息。
+        initialState="signIn"
+      >
         <AppProvider>
           <StatusBar style="auto" />
           <AppNavigator />

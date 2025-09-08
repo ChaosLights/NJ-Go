@@ -1,0 +1,8 @@
+{
+  "name": "cache-handler",
+  "version": "1.0.0",
+  "main": "cache-handler.js",
+  "dependencies": {
+    "redis": "^4.6.0"
+  }
+}

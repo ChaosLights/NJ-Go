@@ -1,24 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuthenticator } from '@aws-amplify/ui-react-native';
 import { isDevMode, DEV_CONFIG } from '../config/dev';
 
-// 模拟登出函数（开发模式）
+// Mock sign out function (development mode)
 const mockSignOut = () => {
-  Alert.alert('开发模式', '这是模拟的登出功能');
+  Alert.alert('Development Mode', 'This is a mock sign out function');
 };
 
 export function ProfileScreen() {
-  // 根据模式选择不同的数据源
-  const user = isDevMode() ? DEV_CONFIG.MOCK_USER : null;
-  const signOut = isDevMode() ? mockSignOut : () => {};
-
-  // 如果不是开发模式且需要认证钩子，可以在这里添加
-  // const { user: authUser, signOut: authSignOut } = useAuthenticator();
-  // if (!isDevMode()) {
-  //   user = authUser;
-  //   signOut = authSignOut;
-  // }
+  // Get authentication info
+  const { user: authUser, signOut: authSignOut } = useAuthenticator();
+  
+  // Choose different data source and sign out function based on mode
+  const user = isDevMode() ? DEV_CONFIG.MOCK_USER : authUser;
+  const signOut = isDevMode() ? mockSignOut : authSignOut;
 
   return (
     <View style={styles.container}>
@@ -27,31 +24,31 @@ export function ProfileScreen() {
           <Ionicons name="person" size={64} color="white" />
         </View>
         <Text style={styles.userName}>{user?.username || 'User'}</Text>
-        <Text style={styles.userEmail}>{user?.attributes?.email || ''}</Text>
+        <Text style={styles.userEmail}>{(user as any)?.attributes?.email || ''}</Text>
       </View>
 
       <View style={styles.menu}>
         <TouchableOpacity style={styles.menuItem}>
           <Ionicons name="settings-outline" size={24} color="#666" />
-          <Text style={styles.menuText}>设置</Text>
+          <Text style={styles.menuText}>Settings</Text>
           <Ionicons name="chevron-forward" size={20} color="#ccc" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.menuItem}>
           <Ionicons name="help-circle-outline" size={24} color="#666" />
-          <Text style={styles.menuText}>帮助与反馈</Text>
+          <Text style={styles.menuText}>Help & Feedback</Text>
           <Ionicons name="chevron-forward" size={20} color="#ccc" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.menuItem}>
           <Ionicons name="information-circle-outline" size={24} color="#666" />
-          <Text style={styles.menuText}>关于</Text>
+          <Text style={styles.menuText}>About</Text>
           <Ionicons name="chevron-forward" size={20} color="#ccc" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.signOutButton} onPress={signOut}>
           <Ionicons name="log-out-outline" size={24} color="#FF3B30" />
-          <Text style={styles.signOutText}>退出登录</Text>
+          <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
       </View>
     </View>

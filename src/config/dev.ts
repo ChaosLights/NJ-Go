@@ -1,9 +1,9 @@
-// 开发模式配置
+// Development mode configuration
 export const DEV_CONFIG = {
-  // 开发模式开关 - 设置为 true 跳过登录和认证
-  SKIP_AUTH: true,
+  // Development mode switch - set to true to skip login and authentication
+  SKIP_AUTH: false,
   
-  // 模拟用户数据
+  // Mock user data
   MOCK_USER: {
     username: 'dev_user',
     attributes: {
@@ -11,13 +11,13 @@ export const DEV_CONFIG = {
     }
   },
   
-  // 开发模式提示
+  // Development mode prompt
   showDevModeAlert: () => {
-    console.log('🚀 NJ Go - 开发模式激活');
+    console.log('🚀 NJ Go - Development mode activated');
   }
 };
 
-// 检查是否为开发模式
+// Check if in development mode
 export const isDevMode = () => {
   return __DEV__ && DEV_CONFIG.SKIP_AUTH;
 };

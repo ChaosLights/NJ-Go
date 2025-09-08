@@ -12,13 +12,13 @@ export function TransitOptionsScreen() {
         {state.transitOptions.length === 0 ? (
           <View style={styles.emptyState}>
             <Ionicons name="train-outline" size={64} color="#ccc" />
-            <Text style={styles.emptyText}>暂无交通选项</Text>
-            <Text style={styles.emptySubtext}>请在等车地点附近查看实时交通信息</Text>
+            <Text style={styles.emptyText}>No Transit Options</Text>
+            <Text style={styles.emptySubtext}>Please check real-time transit information near waiting spots</Text>
           </View>
         ) : (
           <View style={styles.optionsList}>
-            {/* 将在后续实现交通选项列表 */}
-            <Text>交通选项列表将在这里显示</Text>
+            {/* Transit options list will be implemented later */}
+            <Text>Transit options list will be displayed here</Text>
           </View>
         )}
       </ScrollView>

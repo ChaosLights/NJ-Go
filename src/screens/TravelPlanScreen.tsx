@@ -13,15 +13,15 @@ export function TravelPlanScreen() {
   const { state } = useAppContext();
 
   const handleAddPlan = () => {
-    // 将在后续实现
-    console.log('添加新的出行计划');
+    // Will be implemented later
+    console.log('Add new travel plan');
   };
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
-          <Text style={styles.title}>我的出行计划</Text>
+          <Text style={styles.title}>My Travel Plans</Text>
           <TouchableOpacity style={styles.addButton} onPress={handleAddPlan}>
             <Ionicons name="add" size={24} color="white" />
           </TouchableOpacity>
@@ -30,8 +30,8 @@ export function TravelPlanScreen() {
         {state.travelPlans.length === 0 ? (
           <View style={styles.emptyState}>
             <Ionicons name="calendar-outline" size={64} color="#ccc" />
-            <Text style={styles.emptyText}>暂无出行计划</Text>
-            <Text style={styles.emptySubtext}>点击右上角的"+"按钮创建第一个出行计划</Text>
+            <Text style={styles.emptyText}>No Travel Plans</Text>
+            <Text style={styles.emptySubtext}>Click the "+" button in the top right to create your first travel plan</Text>
           </View>
         ) : (
           <View style={styles.plansList}>
@@ -40,14 +40,14 @@ export function TravelPlanScreen() {
                 <View style={styles.planHeader}>
                   <Text style={styles.planName}>{plan.name}</Text>
                   <Text style={styles.planStatus}>
-                    {plan.isActive ? '活跃' : '非活跃'}
+                    {plan.isActive ? 'Active' : 'Inactive'}
                   </Text>
                 </View>
                 <Text style={styles.planDetails}>
-                  {plan.destinations.length} 个目的地
+                  {plan.destinations.length} destinations
                 </Text>
                 <Text style={styles.planDetails}>
-                  {plan.timeSlots.length} 个时间段
+                  {plan.timeSlots.length} time slots
                 </Text>
               </TouchableOpacity>
             ))}
@@ -113,13 +113,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 12,
     elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    boxShadow: '0 1px 2.22px rgba(0, 0, 0, 0.22)',
   },
   planHeader: {
     flexDirection: 'row',
